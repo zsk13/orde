@@ -8,4 +8,6 @@ public class Hotel {
   private String telephone;
   
   private String picUrl;
+  
+  private String locale;
 }
