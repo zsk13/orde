@@ -1,12 +1,14 @@
-package com.wrpys.ssm.model;  
-  
+package com.wrpys.ssm.model;
+
+import com.alibaba.fastjson.annotation.JSONField;
 
 public class User {  
   
     private Integer userId;  
   
     private String userName;  
-  
+    
+    @JSONField(serialize=false) 
     private Integer age;  
   
     public Integer getUserId() {  
