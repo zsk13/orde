@@ -21,7 +21,7 @@ public class PicCtr {
 
   @RequestMapping("/hotel1")
   public void valicode(HttpServletRequest request,HttpServletResponse response) throws Exception {
-    String path=request.getSession().getServletContext().getRealPath("upload/img/");
+    String path=request.getSession().getServletContext().getRealPath("/");
     logger.error("file path:  " + path);
     File filePic = new File(path + "test.png");
     if (!filePic.exists()) {
