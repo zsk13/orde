@@ -10,4 +10,6 @@ public class Hotel {
   private String picUrl;
   
   private String locale;
+  
+  private String address;
 }
