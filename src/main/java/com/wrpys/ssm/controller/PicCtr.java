@@ -17,19 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "pic")
 public class PicCtr {
   Log logger = LogFactory.getLog(PicCtr.class);
+
   @RequestMapping("/hotel1")
   public void valicode(HttpServletResponse response) throws Exception {
-    String classpath = Thread.currentThread().getContextClassLoader().getResource("").toString();
-    logger.info("classpath: "+classpath);
-//    String resourcepath = classpath.replace("/classes/", "/resources/");
-//    File resources = new File(resourcepath);
-//    if(!resources.exists()){
-//      boolean succ = resources.mkdirs();
-//    }
-    String resourcepath = classpath+"resources/";
-    File filePic = new File(resourcepath+"test.png");
 
-    filePic.createNewFile();
+    File filePic = new File("test.png");
+    if (!filePic.exists()) {
+      filePic.createNewFile();
+    }
+    logger.info("file path:  " + filePic.getAbsolutePath());
+    logger.error("file path:  " + filePic.getAbsolutePath());
     if (filePic.exists()) {
       FileInputStream is = new FileInputStream(filePic);
       int i = is.available(); // 得到文件大小
