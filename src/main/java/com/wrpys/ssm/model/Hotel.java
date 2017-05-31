@@ -11,5 +11,5 @@ public class Hotel {
   
   private String locale;
   
-
+private String address;
 }
