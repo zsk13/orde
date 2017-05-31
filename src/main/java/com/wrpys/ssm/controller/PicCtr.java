@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
@@ -19,9 +20,10 @@ public class PicCtr {
   Log logger = LogFactory.getLog(PicCtr.class);
 
   @RequestMapping("/hotel1")
-  public void valicode(HttpServletResponse response) throws Exception {
-
-    File filePic = new File("test.png");
+  public void valicode(HttpServletRequest request,HttpServletResponse response) throws Exception {
+    String path=request.getSession().getServletContext().getRealPath("upload/img/");
+    logger.error("file path:  " + path);
+    File filePic = new File(path + "test.png");
     if (!filePic.exists()) {
       filePic.createNewFile();
     }
