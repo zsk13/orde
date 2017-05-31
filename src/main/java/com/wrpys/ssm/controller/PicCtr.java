@@ -1,11 +1,9 @@
 package com.wrpys.ssm.controller;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,10 +18,11 @@ public class PicCtr {
   Log logger = LogFactory.getLog(PicCtr.class);
 
   @RequestMapping("/hotel1")
-  public void valicode(HttpServletRequest request,HttpServletResponse response) throws Exception {
-    String path=request.getSession().getServletContext().getRealPath("/");
+  public void valicode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    String path = request.getSession().getServletContext().getRealPath("/");
+    path = path.substring(0, path.lastIndexOf("/"));
     logger.error("file path:  " + path);
-    File filePic = new File(path + "test.png");
+    File filePic = new File(path + "pic/test.png");
     if (!filePic.exists()) {
       filePic.createNewFile();
     }
