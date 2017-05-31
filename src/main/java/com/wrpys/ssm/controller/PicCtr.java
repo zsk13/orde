@@ -19,10 +19,11 @@ public class PicCtr {
 
   @RequestMapping("/hotel1")
   public void valicode(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    String path = request.getSession().getServletContext().getRealPath("/");
-    path = path.substring(0, path.lastIndexOf("/"));
+    String path = request.getSession().getServletContext().getRealPath("");
+    path = path.substring(0, path.lastIndexOf(File.separator));
+    path = path.substring(0, path.lastIndexOf(File.separator));
     logger.error("file path:  " + path);
-    File filePic = new File(path + "pic/test.png");
+    File filePic = new File(path +File.separator+ "pic"+File.separator+"test.png");
     if (!filePic.exists()) {
       filePic.createNewFile();
     }
