@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.wrpys.ssm.dao.TokenDao" >  
+    <sql id="inc_whereClause" >  
+        <where>  
+            <if test="userId!=null and userId!=''">  
+                and user_id = #{userId}  
+            </if>  
+            <if test="token!=null and token!=''">  
+                and token = #{token}  
+            </if>  
+            <if test="endTime!=null">  
+                and end_time = #{endTime}  
+            </if>  
+        </where>  
+    </sql>  
+    
+    <select id="findToken" resultType="com.wrpys.ssm.model.Token">  
+        SELECT user_id as userId, token as token, end_time as endTime  
+        from token
+        <include refid="inc_whereClause"/>  
+        order by endTime desc
+        limit 1
+    </select>
+    
+    <insert id="createToken">  
+        INSERT INTO token(user_id, token, end_time) VALUES (#{userId, jdbcType=INTEGER}, #{token, jdbcType=VARCHAR}, #{endTime, jdbcType=TIMESTAMP})  
+    </insert>
+    <delete id="deleteToken">
+    	DELETE FROM token  
+        <include refid="inc_whereClause"/>  
+    </delete>   
+</mapper>

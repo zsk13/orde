@@ -1,6 +1,6 @@
 package com.wrpys.ssm.controller;
 
-import com.wrpys.ssm.common.Constans;
+import com.wrpys.ssm.common.Constants;
 import com.wrpys.ssm.common.PageInfo;
 import com.wrpys.ssm.common.ResultBean;
 import com.wrpys.ssm.model.User;
@@ -26,7 +26,7 @@ public class UserCtr {
   @Autowired
   private UserService userService;
 
-  @RequestMapping(value = "list", method = {RequestMethod.GET, RequestMethod.POST})
+  @RequestMapping(value = "list", method = {RequestMethod.GET})
   @ResponseBody
   public PageInfo findUser(PageInfo pageInfo, User user) {
     pageInfo = new PageInfo(pageInfo);
@@ -37,11 +37,9 @@ public class UserCtr {
   @RequestMapping(value = "", method = {RequestMethod.POST})
   @ResponseBody
   public ResultBean create(User user) {
-
-    logger.info("enter create user by post method: "+ user.getUserName()+" " +user.getAge());
     ResultBean rb = new ResultBean();
     userService.createUser(user);
-    rb.setFlag(Constans.SUCCESS);
+    rb.setFlag(Constants.SUCCESS);
     return rb;
   }
 
@@ -50,7 +48,7 @@ public class UserCtr {
   public ResultBean add(User user) {
     ResultBean rb = new ResultBean();
     userService.createUser(user);
-    rb.setFlag(Constans.SUCCESS);
+    rb.setFlag(Constants.SUCCESS);
     return rb;
   }
 
@@ -59,7 +57,7 @@ public class UserCtr {
   public ResultBean delete(User user) {
     ResultBean rb = new ResultBean();
     userService.deleteUser(user);
-    rb.setFlag(Constans.SUCCESS);
+    rb.setFlag(Constants.SUCCESS);
     return rb;
   }
 
@@ -68,7 +66,7 @@ public class UserCtr {
   public ResultBean batchDeleteUser(@RequestParam(value = "userIds") List<Integer> userIds) {
     ResultBean rb = new ResultBean();
     userService.batchDeleteUser(userIds);
-    rb.setFlag(Constans.SUCCESS);
+    rb.setFlag(Constants.SUCCESS);
     return rb;
   }
 
@@ -77,7 +75,7 @@ public class UserCtr {
   public ResultBean update(User user) {
     ResultBean rb = new ResultBean();
     userService.updateUser(user);
-    rb.setFlag(Constans.SUCCESS);
+    rb.setFlag(Constants.SUCCESS);
     return rb;
   }
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.wrpys.ssm.dao.HotelDao" >  
+  
+    <sql id="inc_whereClause" >  
+        <where>  
+            <if test="hotelId!=null and hotelId!=''">  
+                and hotel_id = #{hotelId}  
+            </if>  
+            <if test="hotelName!=null and hotelName!=''">  
+                and hotel_name = #{hotelName}
+            </if> 
+        </where>  
+    </sql>  
+  
+    <insert id="createHotel">  
+        INSERT INTO hotel(hotel_name, hotel_id, telephone,introduction,pic_url,address) 
+        VALUES (#{hotelName, jdbcType=VARCHAR}, #{hotelId, jdbcType=VARCHAR}, #{telephone, jdbcType=VARCHAR}, #{introduction, jdbcType=LONGVARCHAR}, #{picUrl, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR})  
+    </insert>  
+  
+    <delete id="deleteHotel">  
+        DELETE FROM hotel
+        <include refid="inc_whereClause"/>  
+    </delete>  
+  
+    <update id="updateHotel">  
+      UPDATE hotel  
+      <set>  
+          <if test="hotelName!=null">  
+              hotel_name = #{hotelName, jdbcType=VARCHAR},  
+          </if>  
+          <if test="telephone!=null">  
+              telephone = #{telephone, jdbcType=VARCHAR},  
+          </if>  
+          <if test="introduction!=null">  
+              introduction = #{introduction, jdbcType=LONGVARCHAR},  
+          </if> 
+          <if test="picUrl!=null">  
+              pic_url = #{picUrl, jdbcType=VARCHAR},  
+          </if> 
+          <if test="address!=null">  
+              address = #{address, jdbcType=VARCHAR},  
+          </if> 
+      </set>  
+      where hotel_id = #{hotelId}  
+    </update>  
+  
+    <select id="findHotel" resultType="com.wrpys.ssm.model.Hotel">  
+		SELECT hotel_id as hotelId, hotel_name as hotelName, telephone, introduction, pic_url as picUrl, address
+        from hotel  
+        <include refid="inc_whereClause"/>  
+    </select>  
+  
+
+  
+</mapper>  

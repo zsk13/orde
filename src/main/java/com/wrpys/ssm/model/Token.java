@@ -1,29 +1,55 @@
 package com.wrpys.ssm.model;
 
+import java.util.Date;
+
 public class Token {
 
-    private long userId;
+  private String userId;
 
-    private String token;
+  private String token;
 
-    public Token(long userId, String token) {
-        this.userId = userId;
-        this.token = token;
-    }
+  private Date endTime;
 
-    public long getUserId() {
-        return userId;
-    }
+  public Token() {
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
+  }
 
-    public String getToken() {
-        return token;
-    }
+  public Token(String userId) {
+    this(userId, null);
+  }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+  public Token(String userId, String token) {
+    this(userId, token, null);
+  }
+
+  public Token(String userId, String token, Date endTime) {
+    this.userId = userId;
+    this.token = token;
+    this.endTime = endTime;
+  }
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
+  }
+
+  public Date getEndTime() {
+    return endTime;
+  }
+
+  public void setEndTime(Date endTime) {
+    this.endTime = endTime;
+  }
+
 }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.wrpys.ssm.dao.FeastDao" >  
+  
+    <sql id="inc_whereClause" >  
+        <where>  
+            <if test="feastId!=null and feastId!=''">  
+                and feast_id = #{feastId}  
+            </if>  
+            <if test="feastName!=null and feastName!=''">  
+                and feast_name = #{feastName}
+            </if> 
+            <if test="hotelId!=null and hotelId!=''">  
+                and hotel_id = #{hotelId}  
+            </if>
+        </where>  
+    </sql>  
+  
+    <insert id="createFeast">  
+        INSERT INTO feast(feast_name, feast_id, feast_menu,introduction,price,hotel_id) 
+        VALUES (#{feastName, jdbcType=VARCHAR}, #{feastId, jdbcType=VARCHAR}, #{feastMenu, jdbcType=VARCHAR}, #{introduction, jdbcType=LONGVARCHAR}, #{price, jdbcType=DOUBLE}, #{hotelId, jdbcType=VARCHAR})  
+    </insert>  
+  
+    <delete id="deleteFeast">  
+        DELETE FROM feast  
+        <include refid="inc_whereClause"/>  
+    </delete>  
+  
+    <update id="updateFeast">  
+      UPDATE feast  
+      <set>  
+          <if test="feastName!=null">  
+              feast_name = #{feastName, jdbcType=VARCHAR},  
+          </if>  
+          <if test="price!=null">  
+              price = #{price, jdbcType=DOUBLE},  
+          </if>  
+          <if test="introduction!=null">  
+              introduction = #{introduction, jdbcType=LONGVARCHAR},  
+          </if> 
+          <if test="feastMenu!=null">  
+              feast_menu = #{feastMenu, jdbcType=VARCHAR},  
+          </if> 
+      </set>  
+      where feast_id = #{feastId}  
+    </update>  
+  
+    <select id="findFeast" resultType="com.wrpys.ssm.model.Feast">  
+		SELECT feast_id as feastId, feast_name as feastName, feast_menu as feastMenu, introduction, price, hotel_id as hotelId
+        from feast  
+        <include refid="inc_whereClause"/>  
+    </select>  
+  
+
+  
+</mapper>  

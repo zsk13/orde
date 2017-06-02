@@ -4,7 +4,7 @@ import com.wrpys.ssm.model.Token;
 
 public interface TokenService {
 
-    public Token createToken(long userId);
+    public Token createToken(String userId);
 
 
     public boolean checkToken(Token model);
@@ -20,6 +20,6 @@ public interface TokenService {
      * 清除token
      * @param userId 登录用户的id
      */
-    public void deleteToken(long userId);
+    public void deleteToken(String userId);
 
 }

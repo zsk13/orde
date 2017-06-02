@@ -1,9 +1,10 @@
 package com.wrpys.ssm.service;  
   
-import com.wrpys.ssm.common.PageInfo;  
+import java.util.List;
+
+import com.wrpys.ssm.common.PageInfo;
+import com.wrpys.ssm.model.Token;
 import com.wrpys.ssm.model.User;  
-  
-import java.util.List;  
   
 public interface UserService {  
   
@@ -16,5 +17,10 @@ public interface UserService {
     void batchDeleteUser(List<Integer> userIds);  
   
     void updateUser(User user);  
-  
+    
+    User findUserById(String userId);
+    
+    Token login(String userName, String password);
+    
+    
 }  

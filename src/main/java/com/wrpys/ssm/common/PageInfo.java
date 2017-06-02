@@ -2,11 +2,6 @@ package com.wrpys.ssm.common;
 
 import java.util.List;
 
-/**
- * @author wrp
- * @Description com.wrpys.ssm.common.PageInfo
- * @Date 2017/1/13
- */
 public class PageInfo<T> {
 
   private Integer pageNum;
